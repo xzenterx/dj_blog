@@ -1,0 +1,34 @@
+{% extends 'blog/base_blog.html' %}
+
+{% block title %}
+    Edit Tag - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="mb-5">Edit Tag:</h1>
+
+    <form action="{{ tag.get_update_url }}" method="post">
+
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="form-group">
+
+                {{ field.label }}
+                {{ field }}
+
+                {% if field.errors %}
+                    <div class='alert alert-danger'>
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+
+            </div>
+        {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Edit Tag</button>
+
+    </form>
+
+{% endblock %}
